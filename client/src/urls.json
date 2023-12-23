@@ -1,0 +1,4 @@
+{
+  "node_server": "https://smartkart-node.vercel.app",
+  "python_server": "https://smartkart-python.onrender.com"
+}
