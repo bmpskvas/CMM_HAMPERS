@@ -1,25 +1,36 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { motion } from "framer-motion";
 import Breadcrumbs from "../../components/pageProps/Breadcrumbs";
 import { resetCart } from "../../redux/orebiSlice";
 import { emptyCart } from "../../assets/images/index";
 import ItemCard from "./ItemCard";
+import axios from "axios";
 
 const Cart = () => {
   const dispatch = useDispatch();
-  const products = useSelector((state) => state.orebiReducer.products);
+  // const products = useSelector((state) => state.orebiReducer.products);
+  // console.log(products);
+  const [products,setProducts]=useState([])
   const [totalAmt, setTotalAmt] = useState("");
   const [shippingCharge, setShippingCharge] = useState("");
+  const mail=localStorage.getItem('mail')
+  const [delid,setDelId]=useState();
+  const location=useLocation(); 
   useEffect(() => {
+     async function cartdetails(){
+        const result= await axios.post('http://localhost:8000/hamper/cartdetails',{'email': mail})
+        setProducts(result.data.data);
+    }
     let price = 0;
     products.map((item) => {
       price += item.price * item.quantity;
       return price;
     });
     setTotalAmt(price);
-  }, [products]);
+    cartdetails();
+  }, []);
   useEffect(() => {
     if (totalAmt <= 200) {
       setShippingCharge(30);
@@ -29,6 +40,10 @@ const Cart = () => {
       setShippingCharge(20);
     }
   }, [totalAmt]);
+  async function reset(){
+   const res= await axios.post('http://localhost:8000/hamper/clearcart',{'email':mail});
+   setProducts([]);
+  }
   return (
     <div className="max-w-container mx-auto px-4">
       <Breadcrumbs title="Cart" />
@@ -43,13 +58,13 @@ const Cart = () => {
           <div className="mt-5">
             {products.map((item) => (
               <div key={item._id}>
-                <ItemCard item={item} />
+                <ItemCard item={item} setProducts={setProducts} products={products}/>
               </div>
             ))}
           </div>
 
           <button
-            onClick={() => dispatch(resetCart())}
+            onClick={reset}
             className="py-2 px-10 bg-red-500 text-white font-semibold uppercase mb-4 hover:bg-red-700 duration-300"
           >
             Reset cart

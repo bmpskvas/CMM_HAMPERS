@@ -16,7 +16,7 @@ const Star = ({ marked, onClick, onMouseEnter, onMouseLeave }) => (
 );
 
 const Rating = ({rate}) => {
-  console.log(rate)
+  // console.log(rate)
   const [ratings, setRatings] = useState([4, 3, 5]); // Example array of ratings
   const [rating, setRating] = useState(rate);
   const [hoverIndex, setHoverIndex] = useState(-1);

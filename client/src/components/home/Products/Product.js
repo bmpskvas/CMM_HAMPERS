@@ -45,7 +45,7 @@ const Product = (props) => {
     // response = await response.json()
       // let response=props;
     // if (response.ok) {
-      navigate(`/product/${rootId}`, {
+      navigate(`/product/${productItem._id}`, {
         state: {
           item: productItem
         },
@@ -81,25 +81,25 @@ const Product = (props) => {
     }
   }
   const isLiked = async () => {
-    let response = await fetch(`${server}/liked`, {
-      method: "POST",
-      credentials: "include",
-      headers: {
-        "Content-type": "application/json",
-      },
-      body: JSON.stringify({ product: product_id })
-    })
+    // let response = await fetch(`${server}/liked`, {
+    //   method: "POST",
+    //   credentials: "include",
+    //   headers: {
+    //     "Content-type": "application/json",
+    //   },
+    //   body: JSON.stringify({ product: product_id })
+    // })
 
-    // if (response.status === 401) {
+    // // if (response.status === 401) {
+    // //   setLiked(false)
+    // // }
+    // response = await response.json()
+    // if (response.ok) {
+    //   setLiked(true)
+    // }
+    // else {
     //   setLiked(false)
     // }
-    response = await response.json()
-    if (response.ok) {
-      setLiked(true)
-    }
-    else {
-      setLiked(false)
-    }
   }
   useEffect(() => {
     isLiked()
@@ -133,7 +133,7 @@ const Product = (props) => {
               </span>
             </li>
             <li>
-              Product ID: {product_id}
+              Product ID: {props._id}
             </li>
           </ul>
         </div>

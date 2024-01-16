@@ -1,38 +1,73 @@
 import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import Breadcrumbs from "../../components/pageProps/Breadcrumbs";
-
+import axios from 'axios';
 const Contact = () => {
   const location = useLocation();
   const [prevLocation, setPrevLocation] = useState("");
-  useEffect(() => {
-    setPrevLocation(location.state.data);
-  }, [location]);
+  const token=localStorage.getItem('token');
+  const mail=localStorage.getItem('mail');
+  useEffect(()=>{
+    if(token==null){
+      alert('Login, to continue!')
+      window.location.href='/';
+    }
+    else{
+      setEmail(mail)
+    }
+  })
+  // useEffect(() => {
+  //   setPrevLocation(location.state.data);
+  // }, [location]);
 
   const [clientName, setclientName] = useState("");
   const [email, setEmail] = useState("");
   const [messages, setMessages] = useState("");
-
   // ========== Error Messages Start here ============
   const [errClientName, setErrClientName] = useState("");
   const [errEmail, setErrEmail] = useState("");
   const [errMessages, setErrMessages] = useState("");
   // ========== Error Messages End here ==============
   const [successMsg, setSuccessMsg] = useState("");
-
-  const handleName = (e) => {
-    setclientName(e.target.value);
-    setErrClientName("");
-  };
-  const handleEmail = (e) => {
-    setEmail(e.target.value);
-    setErrEmail("");
-  };
-  const handleMessages = (e) => {
-    setMessages(e.target.value);
-    setErrMessages("");
-  };
-
+  const[form,setForm]=useState({
+     'name':'',
+     'email':mail,
+     'message':'',
+  })
+  // const handleName = (e) => {
+  //   setclientName(e.target.value);
+  //   setErrClientName("");
+  // };
+  // const handleEmail = (e) => {
+  //   setEmail(e.target.value);
+  //   setErrEmail("");
+  // };
+  // const handleMessages = (e) => {
+  //   setMessages(e.target.value);
+  //   setErrMessages("");
+  // };
+  const handle = (e) =>{
+    const tmp ={...form};
+    tmp[e.target.name]=e.target.value;
+    setForm(tmp);
+    if (e.target.name === "name") {
+      setclientName(e.target.value);
+    } else if (e.target.name === "email") {
+      setEmail(e.target.value );
+    } else if (e.target.name === "message") {
+      setMessages(e.target.value);
+    }
+  }
+  async function submit(){
+    if(form.name=='' || form.message=='' || form.email==''){
+      alert('Please fill the appropriate data');
+    }
+    else{
+    
+    const res=await axios.post('http://localhost:8000/hamper/querysubmission',form);
+    alert('The query has been submitted,the Owner will contact you soon by your mail! Thankyou!')
+    }
+  }
   // ================= Email Validation start here =============
   const EmailValidation = (email) => {
     return String(email)
@@ -80,11 +115,12 @@ const Contact = () => {
                 Name
               </p>
               <input
-                onChange={handleName}
+                onChange={(e)=>handle(e)}
                 value={clientName}
                 className="w-full py-1 border-b-2 px-2 text-base font-medium placeholder:font-normal placeholder:text-sm outline-none focus-within:border-primeColor"
                 type="text"
                 placeholder="Enter your name here"
+                name="name"
               />
               {errClientName && (
                 <p className="text-red-500 text-sm font-titleFont font-semibold mt-1 px-2 flex items-center gap-1">
@@ -98,11 +134,12 @@ const Contact = () => {
                 Email
               </p>
               <input
-                onChange={handleEmail}
+                onChange={(e)=>handle(e)}
                 value={email}
                 className="w-full py-1 border-b-2 px-2 text-base font-medium placeholder:font-normal placeholder:text-sm outline-none focus-within:border-primeColor"
                 type="email"
-                placeholder="Enter your name here"
+                placeholder="Enter your email here"
+                name="email"
               />
               {errEmail && (
                 <p className="text-red-500 text-sm font-titleFont font-semibold mt-1 px-2 flex items-center gap-1">
@@ -113,16 +150,17 @@ const Contact = () => {
             </div>
             <div>
               <p className="text-base font-titleFont font-semibold px-2">
-                Messages
+               Raise Your Query
               </p>
               <textarea
-                onChange={handleMessages}
+                onChange={(e)=>handle(e)}
                 value={messages}
                 cols="30"
                 rows="3"
                 className="w-full py-1 border-b-2 px-2 text-base font-medium placeholder:font-normal placeholder:text-sm outline-none focus-within:border-primeColor resize-none"
                 type="text"
-                placeholder="Enter your name here"
+                placeholder="Enter your query here"
+                name="message"
               ></textarea>
               {errMessages && (
                 <p className="text-red-500 text-sm font-titleFont font-semibold mt-1 px-2 flex items-center gap-1">
@@ -132,7 +170,7 @@ const Contact = () => {
               )}
             </div>
             <button
-              onClick={handlePost}
+              onClick={submit}
               className="w-44 bg-primeColor text-gray-200 h-10 font-titleFont text-base tracking-wide font-semibold hover:bg-black hover:text-white duration-200"
             >
               Post

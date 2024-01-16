@@ -18,6 +18,7 @@ export const orebiSlice = createSlice({
       } else {
         state.products.push(action.payload);
       }
+    //  console.log(state);
     },
     increaseQuantity: (state, action) => {
       const item = state.products.find(

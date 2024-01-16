@@ -14,5 +14,4 @@ const ShopSideNav = () => {
     </div>
   );
 };
-
 export default ShopSideNav;

@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'hamper',
     'rest_framework',
     'corsheaders',
+    'auths',
 ]
 
 MIDDLEWARE = [

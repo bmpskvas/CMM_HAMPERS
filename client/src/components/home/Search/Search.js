@@ -9,8 +9,6 @@ import Product from "../Products/Product"
 import axios from 'axios';
 import Pagination from '../../pageProps/shopPage/Pagination'
 const server = url.python_server
-
-
 const  Search = () => {
   const [itemsPerPage, setItemsPerPage] = useState(12);
   const itemsPerPageFromBanner = (itemsPerPage) => {

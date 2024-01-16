@@ -6,22 +6,35 @@ import Pagination from "../Pagination";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 const Category = () => {
-  const categories = ['Birthday Hampers', 'Anniversary Hampers', 'Tray Hampers', 'Basket Hampers', 'Maternity Hampers', 'Chocolate tower Hampers','Meal Hmapers']
+  const categories = ['Birthday Hampers', 'Anniversary Hampers', 'Tray Hampers', 'Basket Hampers', 'Maternity Hampers', 'Chocolate tower Hampers','Meal Hampers']
   const [showSubCatOne, setShowSubCatOne] = useState(false);
   const [cat,setCat]=useState()
   const navigate=useNavigate();
- 
+  const [cards,setCards]=useState([])
      function handleCategoryClick  (index) {
       // Add your logic for handling category click here
       // console.log(`Category clicked: ${categories[index]}`);
       // // Example: Toggle showSubCatOne state
       // setShowSubCatOne(!showSubCatOne);
       const category=categories[index];
-  
-      setCat(category)
-      navigate('/search',{
-        state: category
-      })
+      // console.log(category);
+      async function getcards() {
+        try {
+          const result = await axios.post('http://localhost:8000/hamper/getbycategory', {category: category});
+         let data=result.data.data;
+          data = data.map((obj, index) => ({ ...obj, image: "http://localhost:8000/"+obj.image }));
+         
+          setCards(data);
+          navigate('/shop',{
+            state: data
+          })
+          // console.log(data.filter(item => item.category===category_searched))
+        } catch (error) {
+          console.error(error);
+          
+        }
+      }
+     getcards();
        
     };
 
