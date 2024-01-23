@@ -9,6 +9,10 @@ import ItemCard from "./ItemCard";
 import axios from "axios";
 
 const Cart = () => {
+  const token=localStorage.getItem('token')
+  if(token==null){
+    window.location.href='/'
+  }
   const dispatch = useDispatch();
   // const products = useSelector((state) => state.orebiReducer.products);
   // console.log(products);

@@ -10,30 +10,32 @@ const Shop = () => {
   const itemsPerPageFromBanner = (itemsPerPage) => {
     setItemsPerPage(itemsPerPage);
   };
-  const [shopitem,setShopitem]=useState([]);
+  const [shopitem, setShopitem] = useState([]);
   const location = useLocation()
-  const cards=location.state
-  useEffect(()=>{
-     async function call(){
-      try{  
-        if ( cards.length > 0) {
-          
+  let cards = [];
+  if (location.state!=null) cards = location.state
+  useEffect(() => {
+    async function call() {
+      try {
+        if (cards.length > 0) {
+
           setShopitem(cards);
         }
-          else{
-        const result= await axios.get('http://localhost:8000/hamper/allpost');
-        let data=result.data.data;
-        data = data.map((obj, index) => ({ ...obj, image: "http://localhost:8000/"+obj.image }));
-        setShopitem(data);
-          }
+        else {
+          const result = await axios.get('http://localhost:8000/hamper/allpost');
+          let data = result.data.data;
+          data = data.map((obj, index) => ({ ...obj, image: "http://localhost:8000/" + obj.image }));
+          setShopitem(data);
+        }
       }
-      catch(error){
+      catch (error) {
+        // console.log(error);
         alert('error occured')
       }
-     }
-     call();
+    }
+    call();
     // console.log(shopitem);
-  },[cards])
+  }, [cards])
   return (
     <div className="max-w-container mx-auto px-4">
       <Breadcrumbs title="Products" />
@@ -43,8 +45,8 @@ const Shop = () => {
           <ShopSideNav />
         </div>
         <div className="w-full mdl:w-[80%] lgl:w-[75%] h-full flex flex-col gap-10">
-          <ProductBanner itemsPerPageFromBanner={itemsPerPageFromBanner} setShopitem={setShopitem} setItemsPerPage={setItemsPerPage}/>
-          <Pagination itemsPerPage={itemsPerPage} items={shopitem}/>
+          <ProductBanner itemsPerPageFromBanner={itemsPerPageFromBanner} setShopitem={setShopitem} setItemsPerPage={setItemsPerPage} />
+          <Pagination itemsPerPage={itemsPerPage} items={shopitem} />
         </div>
       </div>
       {/* ================= Products End here ===================== */}

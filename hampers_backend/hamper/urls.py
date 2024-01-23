@@ -16,5 +16,6 @@ urlpatterns=[
     path('inc',inc),
     path('dec',dec),
     path('clearcart',clearcart),
-    path('querysubmission',querysubmission)
+    path('querysubmission',querysubmission),
+   
 ]

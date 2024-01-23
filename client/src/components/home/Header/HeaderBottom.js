@@ -101,14 +101,14 @@ const HeaderBottom = () => {
               </motion.ul>
             )}
           </div>
-          <div className="relative w-full lg:w-[600px] h-[50px] text-base text-primeColor bg-white flex items-center gap-2 justify-between px-6 rounded-xl">
+          {/* <div className="relative w-full lg:w-[600px] h-[50px] text-base text-primeColor bg-white flex items-center gap-2 justify-between px-6 rounded-xl">
             <input
               className="flex-1 h-full outline-none placeholder:text-[#C4C4C4] placeholder:text-[14px]"
               type="text"
               onChange={(e) => handle(e)}
               placeholder="Search your products here"
             />
-            <FaSearch className="w-5 h-5" onClick={search} style={{ cursor: "pointer" }} />
+            <FaSearch className="w-5 h-5" onClick={search} style={{ cursor: "pointer" }} /> */}
             {/* {searchQuery && (
               <div
                 className={`w-full mx-auto h-96 bg-white top-16 absolute left-0 z-50 overflow-y-scroll shadow-2xl scrollbar-hide cursor-pointer`}
@@ -151,7 +151,7 @@ const HeaderBottom = () => {
                   ))}
               </div>
             )} */}
-          </div>
+          {/* </div> */}
           <div className="flex gap-4 mt-2 lg:mt-0 items-center pr-6 cursor-pointer relative">
             {user ?
               <Link to="/cart">
