@@ -25,10 +25,12 @@ SECRET_KEY = 'django-insecure-5r#2n#e!^+f_192hw8)7n9(f3^ab+c8g0t=d0lswud*!@lj9kx
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
-CORS_ORIGIN_ALLOW_ALL=False
-CORS_ORIGIN_WHITELIST=(
+
+ALLOWED_HOSTS = ["*"]  # allowed all
+CORS_ORIGIN_ALLOW_ALL = False
+CORS_ORIGIN_WHITELIST = (
     'http://localhost:3000',
+    'https://cmmhampers.vercel.app'
 )
 
 # Application definition
@@ -54,7 +56,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-     'corsheaders.middleware.CorsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
 ]
 
 ROOT_URLCONF = 'hampers_backend.urls'
