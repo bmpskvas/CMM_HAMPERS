@@ -33,7 +33,7 @@ CORS_ORIGIN_WHITELIST = (
     'https://cmmhampers.vercel.app',
 )
 
-CSRF_TRUSTED_ORIGINS = ["https://cmmhampers.vercel.app/"]
+CSRF_TRUSTED_ORIGINS = ["https://cmmhampers-production.up.railway.app"]
 
 # Application definition
 
