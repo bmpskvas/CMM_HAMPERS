@@ -26,6 +26,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('hamper/',include('hamper.urls')),
     path('auths/',include('auths.urls')),
-]
 
+]
+urlpatterns += static('/static/', document_root=os.path.join(BASE_DIR, 'static'))
 urlpatterns += static('/hamper_images/', document_root=os.path.join(BASE_DIR, 'hamper_images'))
