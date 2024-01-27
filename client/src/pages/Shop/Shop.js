@@ -22,14 +22,14 @@ const Shop = () => {
           setShopitem(cards);
         }
         else {
-          const result = await axios.get('http://localhost:8000/hamper/allpost');
+          const result = await axios.get('https://cmmhampers-production.up.railway.app/hamper/allpost');
           let data = result.data.data;
-          data = data.map((obj, index) => ({ ...obj, image: "http://localhost:8000/" + obj.image }));
+          data = data.map((obj, index) => ({ ...obj, image: "https://cmmhampers-production.up.railway.app/" + obj.image }));
           setShopitem(data);
         }
       }
       catch (error) {
-        // console.log(error);
+        console.log(error);
         alert('error occured')
       }
     }

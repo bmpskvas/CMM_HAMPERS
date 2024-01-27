@@ -145,7 +145,7 @@ def cartdetails(request):
   res = [] 
   for i in details:
     dct={
-      'image':"http://localhost:8000/" + i.pid.image.url,
+      'image':"https://cmmhampers-production.up.railway.app/" + i.pid.image.url,
       'name':i.pid.category,
       'price':i.pid.price,
       'quantity':i.quantity,

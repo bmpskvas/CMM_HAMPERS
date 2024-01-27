@@ -46,7 +46,7 @@ const Orders = () => {
     e.preventDefault();
     const data = formData;
     // console.log(data);
-    const result = await axios.post('http://localhost:8000/hamper/orderdetails', formData);
+    const result = await axios.post('https://cmmhampers-production.up.railway.app/hamper/orderdetails', formData);
     alert(result.data.message);
     setFormData({
       name: '',
@@ -58,7 +58,7 @@ const Orders = () => {
     });
   };
   async function filldetails() {
-    const result = await axios.post('http://localhost:8000/hamper/filldetails', { 'email': mail });
+    const result = await axios.post('https://cmmhampers-production.up.railway.app/hamper/filldetails', { 'email': mail });
     const data = result.data.details;
     if (data) {
       setFormData({

@@ -20,9 +20,9 @@ const Category = () => {
       // console.log(category);
       async function getcards() {
         try {
-          const result = await axios.post('http://localhost:8000/hamper/getbycategory', {category: category});
+          const result = await axios.post('https://cmmhampers-production.up.railway.app/hamper/getbycategory', {category: category});
          let data=result.data.data;
-          data = data.map((obj, index) => ({ ...obj, image: "http://localhost:8000/"+obj.image }));
+          data = data.map((obj, index) => ({ ...obj, image: "https://cmmhampers-production.up.railway.app/"+obj.image }));
          
           setCards(data);
           navigate('/shop',{

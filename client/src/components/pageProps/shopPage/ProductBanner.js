@@ -13,25 +13,25 @@ const ProductBanner = ({ itemsPerPageFromBanner,setShopitem, setItemsPerPage}) =
  {
       setSortBy(e.target.value);
       if(e.target.value==="New Arrival"){
-        const result= await axios.get('http://localhost:8000/hamper/newarrivals');
+        const result= await axios.get('https://cmmhampers-production.up.railway.app/hamper/newarrivals');
        
         let data=result.data.data;
-        data = data.map((obj, index) => ({ ...obj, image: "http://localhost:8000/"+obj.image }));
+        data = data.map((obj, index) => ({ ...obj, image: "https://cmmhampers-production.up.railway.app/"+obj.image }));
         setShopitem(data);
         // console.log(cards);
        
       }
       else if(e.target.value==="Best Sellers"){
-        const result= await axios.get('http://localhost:8000/hamper/bestseller');
+        const result= await axios.get('https://cmmhampers-production.up.railway.app/hamper/bestseller');
         let data=result.data.data;
-        data = data.map((obj, index) => ({ ...obj, image: "http://localhost:8000/"+obj.image }));
+        data = data.map((obj, index) => ({ ...obj, image: "https://cmmhampers-production.up.railway.app/"+obj.image }));
         setShopitem(data);
       }
       else {
       
-        const result= await axios.get('http://localhost:8000/hamper/allpost');
+        const result= await axios.get('https://cmmhampers-production.up.railway.app/hamper/allpost');
         let data=result.data.data;
-        data = data.map((obj, index) => ({ ...obj, image: "http://localhost:8000/"+obj.image }));
+        data = data.map((obj, index) => ({ ...obj, image: "https://cmmhampers-production.up.railway.app/"+obj.image }));
         setShopitem(data);
       }
      

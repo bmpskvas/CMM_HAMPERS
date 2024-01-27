@@ -39,9 +39,9 @@ const ProductDetails = () => {
         setProductInfo(data);
       } else {
         try{
-      const result=await axios.post('http://localhost:8000/hamper/getbyid', {id: _id});
+      const result=await axios.post('https://cmmhampers-production.up.railway.app/hamper/getbyid', {id: _id});
        data=result.data.data
-       data = data.map((obj, index) => ({ ...obj, image: "http://localhost:8000/"+obj.image }));
+       data = data.map((obj, index) => ({ ...obj, image: "https://cmmhampers-production.up.railway.app/"+obj.image }));
        
        setProductInfo(data[0]);
        setImage(data[0].image);

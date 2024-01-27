@@ -55,7 +55,7 @@ const SpecialCase = () => {
         })
         .then( async (res) => {
           const email=res.data.email;
-          const result = await axios.post('http://localhost:8000/auths/checkuser', {'email': email})
+          const result = await axios.post('https://cmmhampers-production.up.railway.app/auths/checkuser', {'email': email})
           const msg=result.data.message;
           const token=result.data.data;
           if(msg=="account created"){

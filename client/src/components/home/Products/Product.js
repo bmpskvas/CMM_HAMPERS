@@ -41,7 +41,7 @@ const Product = (props) => {
     //   body: JSON.stringify({ product: product_id })
     // })
     // console.log(props);
-    // const result= await axios.post('http://localhost:8000/hamper/getdetail',{'id': props._id});
+    // const result= await axios.post('https://cmmhampers-production.up.railway.app/hamper/getdetail',{'id': props._id});
     // response = await response.json()
       // let response=props;
     // if (response.ok) {

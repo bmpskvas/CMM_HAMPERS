@@ -24,7 +24,7 @@ const Cart = () => {
   const location=useLocation(); 
   useEffect(() => {
      async function cartdetails(){
-        const result= await axios.post('http://localhost:8000/hamper/cartdetails',{'email': mail})
+        const result= await axios.post('https://cmmhampers-production.up.railway.app/hamper/cartdetails',{'email': mail})
         setProducts(result.data.data);
     }
     let price = 0;
@@ -45,7 +45,7 @@ const Cart = () => {
     }
   }, [totalAmt]);
   async function reset(){
-   const res= await axios.post('http://localhost:8000/hamper/clearcart',{'email':mail});
+   const res= await axios.post('https://cmmhampers-production.up.railway.app/hamper/clearcart',{'email':mail});
    setProducts([]);
   }
   return (

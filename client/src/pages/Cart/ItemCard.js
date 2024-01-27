@@ -16,7 +16,7 @@ const ItemCard = ({ item,setProducts,products }) => {
   const mail=localStorage.getItem('mail');
   const id=item._id;
  async function del(){
-      const res= await axios.post('http://localhost:8000/hamper/delte',{'id': item._id, 'email': mail }) 
+      const res= await axios.post('https://cmmhampers-production.up.railway.app/hamper/delte',{'id': item._id, 'email': mail }) 
     let cartthings=products;
     cartthings=cartthings.filter((item)=>{
       return item._id!=id
@@ -29,7 +29,7 @@ const ItemCard = ({ item,setProducts,products }) => {
     }
   })
   async function inc(){
-    const res=await axios.post('http://localhost:8000/hamper/inc',{'id': item._id, 'email': mail })
+    const res=await axios.post('https://cmmhampers-production.up.railway.app/hamper/inc',{'id': item._id, 'email': mail })
     let cartthings=products; 
     for(let i=0;i<cartthings.length;i++){
         
@@ -42,7 +42,7 @@ const ItemCard = ({ item,setProducts,products }) => {
     setProducts(cartthings);
   }
   async function dec(){
-    const res=await axios.post('http://localhost:8000/hamper/dec',{'id': item._id, 'email': mail })
+    const res=await axios.post('https://cmmhampers-production.up.railway.app/hamper/dec',{'id': item._id, 'email': mail })
     let cartthings=products; 
     for(let i=0;i<cartthings.length;i++){
       if(cartthings[i]._id==id){

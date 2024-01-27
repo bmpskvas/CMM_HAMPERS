@@ -64,7 +64,7 @@ const Contact = () => {
     }
     else{
     
-    const res=await axios.post('http://localhost:8000/hamper/querysubmission',form);
+    const res=await axios.post('https://cmmhampers-production.up.railway.app/hamper/querysubmission',form);
     alert('The query has been submitted,the Owner will contact you soon by your mail! Thankyou!')
     }
   }

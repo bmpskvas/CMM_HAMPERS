@@ -65,9 +65,9 @@ const  Search = () => {
     // }
     async function getcards() {
       try {
-        const result = await axios.post('http://localhost:8000/hamper/getbycategory', {category: category_searched});
+        const result = await axios.post('https://cmmhampers-production.up.railway.app/hamper/getbycategory', {category: category_searched});
        let data=result.data.data;
-        data = data.map((obj, index) => ({ ...obj, image: "http://localhost:8000/"+obj.image }));
+        data = data.map((obj, index) => ({ ...obj, image: "https://cmmhampers-production.up.railway.app/"+obj.image }));
         console.log(data);
         setCards(data);
         // console.log(data.filter(item => item.category===category_searched))

@@ -30,8 +30,10 @@ ALLOWED_HOSTS = ["*"]  # allowed all
 CORS_ORIGIN_ALLOW_ALL = False
 CORS_ORIGIN_WHITELIST = (
     'http://localhost:3000',
-    'https://cmmhampers.vercel.app'
+    'https://cmmhampers.vercel.app',
 )
+
+CSRF_TRUSTED_ORIGINS = ["https://cmmhampers.vercel.app/"]
 
 # Application definition
 

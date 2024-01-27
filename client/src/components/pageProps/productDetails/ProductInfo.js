@@ -61,7 +61,7 @@ const ProductInfo = ({ productInfo }) => {
           }
           else{ 
         const token=localStorage.getItem('token')
-        const result=await axios.post('http://localhost:8000/hamper/addtocart',{productInfo,'token':token} );
+        const result=await axios.post('https://cmmhampers-production.up.railway.app/hamper/addtocart',{productInfo,'token':token} );
         window.location.href='/cart';
           // dispatch(
           //   addToCart({
